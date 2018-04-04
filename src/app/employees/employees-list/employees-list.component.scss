@@ -1,0 +1,16 @@
+.EmployeesList {
+  &-table {
+    width: 768px;
+  }
+
+  .mat-column {
+    &-email, &-login {
+      flex-grow: 2;
+    }
+
+    &-actions {
+      flex-grow: 0.5;
+      padding: 0 15px;
+    }
+  }
+}

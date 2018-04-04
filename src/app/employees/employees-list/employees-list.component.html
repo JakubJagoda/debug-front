@@ -1,0 +1,44 @@
+<div class="EmployeesList">
+  <mat-table [dataSource]="employees"
+             class="EmployeesList-table">
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef>First name</mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.firstName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef>Last name</mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.lastName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="login">
+      <mat-header-cell *matHeaderCellDef>System login</mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.login}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let employee"
+                fxLayout="row"
+                fxLayoutAlign="space-around">
+        <button mat-icon-button
+                class="mdi mdi-pencil"
+                (click)="editEmployee(employee)"></button>
+        <button mat-icon-button
+                class="mdi mdi-delete"
+                (click)="deleteEmployee(employee)"></button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let _; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</div>
+
+
+

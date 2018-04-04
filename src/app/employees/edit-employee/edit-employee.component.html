@@ -1,0 +1,27 @@
+<div>
+  <h1 mat-dialog-title>
+    Edit employee
+  </h1>
+  <mat-dialog-content>
+    <label>
+      <mat-form-field>
+        <input matInput
+               placeholder="First Name"
+               [(ngModel)]="data.employee.firstName"
+               type="text"/>
+      </mat-form-field>
+    </label>
+    <label>
+      <mat-form-field>
+        <input matInput
+               placeholder="Last Name"
+               [(ngModel)]="data.employee.lastName"
+               type="text"/>
+      </mat-form-field>
+    </label>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="data">Save</button>
+  </mat-dialog-actions>
+</div>

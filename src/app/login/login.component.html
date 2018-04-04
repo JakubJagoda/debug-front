@@ -1,0 +1,29 @@
+<div fxLayout="row"
+     fxLayoutAlign="center">
+  <mat-card (keydown.enter)="send()">
+    <mat-card-content fxLayout="column">
+      <label>
+        <mat-form-field>
+          <input matInput
+                 placeholder="Login"
+                 [(ngModel)]="login"
+                 type="text"/>
+        </mat-form-field>
+      </label>
+      <label>
+        <mat-form-field>
+          <input matInput
+                 placeholder="Password"
+                 [(ngModel)]="password"
+                 type="password"/>
+        </mat-form-field>
+      </label>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button
+              color="primary"
+              (click)="send()">Send
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

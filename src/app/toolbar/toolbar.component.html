@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <div fxLayout="row"
+       fxLayoutAlign="space-between center"
+       fxFlexFill>
+    <span>My Application</span>
+    <button mat-icon-button
+            *ngIf="isSignOutVisible"
+            [matMenuTriggerFor]="appMenu"
+            class="mdi mdi-dots-vertical mdi-24px"></button>
+  </div>
+</mat-toolbar>
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item
+          (click)="signOut()">Sign out
+  </button>
+</mat-menu>

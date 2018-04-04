@@ -1,0 +1,30 @@
+<div fxLayout="column" class="EmployeesScores">
+  <mat-card>
+    <mat-card-header>
+      Top Scoring Employees
+    </mat-card-header>
+    <mat-card-content class="EmployeesScoresBestEmployees">
+      <swiper [config]="SWIPER_CONFIG"
+              *ngIf="employees && employeesScores">
+        <div class="swiper-slide EmployeesScoresBestEmployees-slide"
+             *ngFor="let employee of orderEmployeesByScore(employees).slice(0, 5)">
+          <span class="mdi mdi-account-circle"></span>
+          {{employee.firstName}} {{employee.lastName}}: {{getEmployeeScore(employee)}}
+        </div>
+      </swiper>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="EmployeesScores-list">
+    <mat-card-header>
+      Employees Scores
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item *ngFor="let employee of orderEmployeesByScore(employees); index as i"
+                       role="listitem">
+          {{i + 1}}. {{employee.firstName}} {{employee.lastName}} - {{getEmployeeScore(employee)}}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

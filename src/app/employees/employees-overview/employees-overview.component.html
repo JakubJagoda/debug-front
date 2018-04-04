@@ -1,0 +1,11 @@
+<div class="EmployeesOverview"
+     fxLayout="row"
+     fxLayoutAlign="space-around top">
+  <dbg-employees-list class="EmployeesOverview-list"
+                      [employees]="employees | async"
+                      (employeeDeleted)="deleteEmployee($event)"
+                      (employeeUpdated)="updateEmployee($event)"></dbg-employees-list>
+  <dbg-employees-scores class="EmployeesOverview-scores"
+                        [employees]="employees | async"
+                        [employeesScores]="employeesScores | async"></dbg-employees-scores>
+</div>
