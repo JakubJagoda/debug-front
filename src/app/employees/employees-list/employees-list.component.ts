@@ -52,7 +52,7 @@ export class EmployeesListComponent implements OnInit {
     this.dialog.open(EditEmployeeComponent, {
       width: '580px',
       data: {
-        employee
+        employee: {...employee}
       }
     }).afterClosed().subscribe(({employee}) => {
       if (employee) {
