@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { UserData } from './auth.interface';
 
 @Injectable()
 export class AuthService {
   private static LOCAL_STORAGE_KEY = 'userData';
-  private userData: Subject<UserData> = new Subject();
+  private userData: BehaviorSubject<UserData> = new BehaviorSubject(null);
 
   constructor() {
     const storedData = JSON.parse(localStorage.getItem(AuthService.LOCAL_STORAGE_KEY));
