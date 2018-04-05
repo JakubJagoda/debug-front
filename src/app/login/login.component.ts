@@ -36,12 +36,9 @@ export class LoginComponent implements OnDestroy, OnInit {
     this.authApiService.logIn(this.login, this.password).subscribe((result: UserData) => {
       this.authService.handleAuthorizationResponse(result);
     }, error => {
-      const ref = this.matSnackBar.open('Error! Incorrect credentials!', 'Dismiss');
-
-      setInterval(() => {
-        const err = error;
-        ref.dismiss();
-      }, 3000);
+      this.matSnackBar.open('Error! Incorrect credentials!', 'Dismiss', {
+        duration: 3000
+      });
     });
   }
 
