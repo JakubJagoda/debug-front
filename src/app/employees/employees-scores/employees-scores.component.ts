@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { EmployeeData, EmployeeScore } from '../../shared/providers/employees/employees.interface';
@@ -8,16 +8,26 @@ import { EmployeeData, EmployeeScore } from '../../shared/providers/employees/em
   templateUrl: './employees-scores.component.html',
   styleUrls: ['./employees-scores.component.scss']
 })
-export class EmployeesScoresComponent implements OnInit {
+export class EmployeesScoresComponent implements OnChanges, OnInit {
   @Input() employeesScores: EmployeeScore[];
   @Input() employees: EmployeeData[];
   public SWIPER_CONFIG: SwiperConfigInterface = {
     navigation: true,
     pagination: true
   };
-  constructor() { }
+  private sortedEmployees: EmployeeData[] = [];
+  private cachedScores: Map<number, number> = new Map();
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.employees && this.employeesScores) {
+      this.sortedEmployees = this.orderEmployeesByScore(this.employees);
+    }
   }
 
   public orderEmployeesByScore(employees: EmployeeData[]): EmployeeData[] {
@@ -34,7 +44,14 @@ export class EmployeesScoresComponent implements OnInit {
       return 0;
     }
 
-    return this.employeesScores.find(e => e.id === employee.id).score;
+    if (this.cachedScores.has(employee.id)) {
+      return this.cachedScores.get(employee.id);
+    } else {
+      const score = this.employeesScores.find(e => e.id === employee.id).score;
+
+      this.cachedScores.set(employee.id, score);
+      return score;
+    }
   }
 
 }

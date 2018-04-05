@@ -7,7 +7,7 @@
       <swiper [config]="SWIPER_CONFIG"
               *ngIf="employees && employeesScores">
         <div class="swiper-slide EmployeesScoresBestEmployees-slide"
-             *ngFor="let employee of orderEmployeesByScore(employees).slice(0, 5)">
+             *ngFor="let employee of sortedEmployees.slice(0, 5)">
           <span class="mdi mdi-account-circle"></span>
           {{employee.firstName}} {{employee.lastName}}: {{getEmployeeScore(employee)}}
         </div>
@@ -20,7 +20,7 @@
     </mat-card-header>
     <mat-card-content>
       <mat-list role="list">
-        <mat-list-item *ngFor="let employee of orderEmployeesByScore(employees); index as i"
+        <mat-list-item *ngFor="let employee of sortedEmployees; index as i"
                        role="listitem">
           {{i + 1}}. {{employee.firstName}} {{employee.lastName}} - {{getEmployeeScore(employee)}}
         </mat-list-item>
